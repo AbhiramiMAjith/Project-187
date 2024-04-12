@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      
+        <!-- iOS has a lot of restrictions on playing videos in the browser. 
+        To play an inline video texture, we must set the meta tag. 
+        A-Frame will inject this if missing.-->
+        <meta name="apple-mobile-web-app-capable" content="yes" /> 
+      
+        <!-- import aframe and then ar.js with image tracking / location based features -->
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    </head>
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene
+        vr-mode-ui="enabled : false"
+        arjs="sourceType:webcam;
+        sourceWidth : 1280; sourceHeight : 960;
+        displayWidth : 1280; displayHeight : 960;
+        debugUIEnabvled : false; detectionMode: mono_and_matrix;
+        matrixCodeType : 3x3" embedded>
+            <a-camera position="0 0 0"></a-camera>
+            <a-assets>
+                <a-asset-item id="snail_model" src="./assets/snail/scene.gltf"></a-asset-item>
+                <a-asset-item id="cat_model" src="./assets/cat/scene.gltf"></a-asset-item>
+                <a-asset-item id="dog_model" src="./assets/dog/scene.gltf"></a-asset-item>
+            </a-assets>
+
+            <a-marker id="snail_marker" type="barcode" value="1" markerhandler>
+                <a-entity id="snail" gltf-model="#snail_model" position="3 0 -1" scale="0.005 0.005 0.005"></a-entity>
+            </a-marker>
+
+            <a-marker id="cat_marker" type="barcode" value="2" markerhandler>
+                <a-entity id="cat" gltf-model="#cat_model" position="0 0 -1" scale="0.2 0.2 0.2"></a-entity>
+            </a-marker>
+
+            <a-marker id="dog_marker" type="barcode" value="3" markerhandler>
+                <a-entity id="dog" gltf-model="#dog_model" position="-3 0 -1" scale="1.8 1.8 1.8"></a-entity>
+            </a-marker>
+        </a-scene>
+    </body>
+</html>
